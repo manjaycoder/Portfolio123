@@ -16,7 +16,11 @@ export type Contact = {
 };
 
 export const CONTACTS: readonly Contact[] = [
- 
+  {
+    key: "telegram",
+    href: "https://t.me/manjaycoder",
+    handle: "@manjaycoder",
+  },
   { key: "email", href: "mailto:manjay.verma.coder@gmail.com", handle: "manjay.verma.coder@gmail.com" },
   {
     key: "discord",
@@ -25,4 +29,5 @@ export const CONTACTS: readonly Contact[] = [
     copyable: true,
   },
   { key: "github", href: "https://github.com/manjaycoder", handle: "manjaycoder" },
+  { key: "kwork", href: "https://kwork.ru/user/manjaycoder", handle: "manjaycoder" },
 ]

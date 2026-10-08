@@ -132,7 +132,9 @@ export function Contact() {
   };
 
   const card = (key: ContactKey) => {
-    const contact = CONTACTS.find((entry) => entry.key === key)!;
+    const contact = CONTACTS.find((entry) => entry.key === key);
+    if (!contact) return null;
+
     return (
       <ContactCard
         contact={contact}

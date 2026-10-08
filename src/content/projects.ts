@@ -1,0 +1,96 @@
+import shots from "./shots.json";
+import type { ProjectSlug } from "./types";
+
+/** One entry per emitted shot, written by `npm run images`. */
+type Shot = {
+  widths: number[];
+  width: number;
+  height: number;
+  /** Average colour of the render, painted while the file decodes. */
+  placeholder: string;
+};
+
+export type Project = {
+  slug: ProjectSlug;
+  /** owner/name on GitHub. */
+  repo: string;
+  /** The colour the whole page takes while this project is showing. */
+  stage: string;
+  shot: Shot;
+};
+
+const SHOTS = shots as Record<ProjectSlug, Shot>;
+
+/**
+ * The six projects, in carousel order, and the only place their structure
+ * lives. Every surface that shows a project — the card, the counter, the flip
+ * side, the arrows — reads from here, so a seventh project is one entry rather
+ * than a seventh copy of a layout that has quietly drifted from the other six.
+ *
+ * Language belongs in the dictionaries, not here: this file has no prose in it.
+ */
+const timbstayImage = (width: number) =>
+  `https://user42364.na.imgto.link/public/20261008/1699f705101ff614d98861b6-chatgpt-image-oct-8-2026-09-05-16-pm.avif?auto=format&fit=crop&w=${width}&q=80`;
+
+export const PROJECTS: readonly Project[] = [
+  {
+    slug: "ai-sales",
+    repo: "bringto-dot/ai-sales-landing",
+    stage: "#f3efe9",
+    shot: {
+      widths: [640, 960, 1280, 1600],
+      width: 1600,
+      height: 1000,
+      placeholder: "#e7dcc4",
+    },
+  },
+  { slug: "prmpt", repo: "bringto-dot/prmpt-landing", stage: "#0a0a0b", shot: SHOTS.prmpt },
+  {
+    slug: "japanese-restaurant",
+    repo: "bringto-dot/japanese-restaurant-landing",
+    stage: "#b4121b",
+    shot: SHOTS["japanese-restaurant"],
+  },
+  {
+    slug: "stipula-legal",
+    repo: "bringto-dot/stipula-legal-landing",
+    stage: "#12315e",
+    shot: SHOTS["stipula-legal"],
+  },
+  { slug: "nimbus-crm", repo: "bringto-dot/nimbus-crm-dashboard", stage: "#e9c86a", shot: SHOTS["nimbus-crm"] },
+  {
+    slug: "productivity-bot",
+    repo: "bringto-dot/productivity-tracker-bot",
+    stage: "#5ac8fa",
+    shot: SHOTS["productivity-bot"],
+  },
+  {
+    slug: "pag-commodities",
+    repo: "bringto-dot/pag-commodities-website",
+    // Sampled from the client's own footer, rather than picked — the one
+    // colour a commodities-trading site actually is.
+    stage: "#0d1f33",
+    shot: SHOTS["pag-commodities"],
+  },
+];
+
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+
+/** `srcset` for one project in one format, so phones stop downloading 1472px. */
+export const shotSrcSet = (project: Project, format: "avif" | "webp") => {
+  if (project.slug === "ai-sales") {
+    return project.shot.widths.map((width) => `${timbstayImage(width)} ${width}w`).join(", ");
+  }
+
+  return project.shot.widths
+    .map((width) => `${asset(`projects/${project.slug}-${width}.${format}`)} ${width}w`)
+    .join(", ");
+};
+
+/** The `<img src>` fallback: the smallest width, so it is never the big one. */
+export const shotFallback = (project: Project) => {
+  if (project.slug === "ai-sales") return timbstayImage(project.shot.widths[0]);
+  return asset(`projects/${project.slug}-${project.shot.widths[0]}.webp`);
+};
+
+export const repoUrl = (project: Project) => `https://github.com/${project.repo}`;

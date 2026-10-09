@@ -26,15 +26,18 @@ export const en: Dict = {
     secondary: "Get in touch",
   },
 
-  about: {
-    title: "About *me*",
-    paragraphs: [
-      "I’m Manjay-webdev, a 2nd year BCA student specializing in Cloud Computing and Information Security. I’m based in Haryana, Panipat, and I love building web projects that are both practical and polished.",
-      "My focus is on frontend development, user experience, and clean digital products. I enjoy turning ideas into responsive interfaces, product pages, dashboards, and interactive experiences that feel smooth and usable. I’m also open to work and actively building my skills through real projects.",
-      "I’m currently learning by shipping real work, exploring modern web development, cloud tools, and secure application design, and sharing that progress on GitHub and my portfolio.",
-    ],
-    figure: "From idea to usable product",
-  },
+
+about: {
+  title: "About *me*",
+  paragraphs: [
+    "I’m Manjay-webdev, a software developer based in India, with a completed BCA degree specializing in Cloud Computing and Information Security. I build practical, scalable, and polished web applications that combine modern design with reliable functionality.",
+
+    "My experience spans frontend and full-stack development, UI/UX engineering, backend systems, and API development. I’ve worked on responsive interfaces, interactive dashboards, REST APIs, authentication systems, database integration, and production-oriented applications. I focus on clean architecture, performance, security, and intuitive user experiences.",
+
+    "I enjoy turning complex ideas into real-world digital products, from business platforms and SaaS applications to booking systems and AI-powered integrations. I continuously strengthen my engineering skills through hands-on projects, modern development tools, cloud technologies, and deployment workflows. I’m open to exciting opportunities, collaborations, and building impactful software with ambitious teams.",
+  ],
+  figure: "From idea to usable product",
+},
 
   projects: {
     title: "Selected work",
@@ -43,6 +46,7 @@ export const en: Dict = {
     previous: "Previous project",
     next: "Next project",
     open: "Open on GitHub",
+    openLive: "Visit live site",
     back: "Back to the cover",
     items: {
       "ai-sales": {
@@ -94,6 +98,13 @@ export const en: Dict = {
         description:
           "A bilingual B2B site for a company working across global commodity flows. The project required structuring market, geography and business information so it could be scanned and understood quickly.",
       },
+      "acme-workforce": {
+        title: "Acme Workforce",
+        kind: "AI-powered workforce management dashboard",
+        focus: ["SAAS", "ADMIN DASHBOARD", "AI WORKFLOWS"],
+        description:
+          "An enterprise workforce dashboard concept that brings employee and department metrics, sprint progress, task priorities, and AI assistance into a single command center. The interface pairs dense operational data with a clear visual hierarchy so teams can spot urgent work and understand performance at a glance.",
+      },
     },
   },
 
@@ -131,25 +142,88 @@ export const en: Dict = {
   },
 
   techStack: {
-    label: "Built for the role",
+    label: "Engineering capabilities",
     title: "Tech *stack*",
-    lead: "The tools and fundamentals behind the work: software engineering first, system design when complexity grows, and data made useful for decisions.",
+    lead: "The technologies, frameworks, and engineering practices I use to build modern web applications, intelligent AI agents, and production-ready software.",
     groups: [
       {
-        title: "SDE fundamentals",
-        items: ["TypeScript", "JavaScript", "React", "Node.js", "REST APIs", "Git", "Data structures", "Algorithms"],
+        title: "SDE & frontend",
+        items: [
+          "TypeScript",
+          "JavaScript",
+          "React",
+          "Next.js",
+          "HTML5",
+          "CSS3",
+          "Tailwind CSS",
+          "Git",
+          "Data Structures",
+          "Algorithms",
+          "OOP",
+        ],
       },
       {
-        title: "System design",
-        items: ["PostgreSQL", "Database design", "API design", "Authentication", "Caching", "Queues", "Docker", "AWS"],
+        title: "Backend & system design",
+        items: [
+          "Node.js",
+          "NestJS",
+          "Express.js",
+          "REST APIs",
+          "PostgreSQL",
+          "SQL",
+          "Redis",
+          "Database Design",
+          "Authentication",
+          "API Design",
+          "System Design",
+        ],
       },
       {
-        title: "Data and analytics",
-        items: ["SQL", "Data modeling", "Dashboard design", "Data visualization", "KPI thinking", "Product metrics", "Python"],
+        title: "AI agents & frameworks",
+        items: [
+          "LLM APIs",
+          "AI Agents",
+          "LangChain",
+          "LangGraph",
+          "LlamaIndex",
+          "CrewAI",
+          "OpenAI Agents SDK",
+          "Tool Calling",
+          "Agentic Workflows",
+          "RAG",
+          "Vector Databases",
+          "MCP",
+        ],
       },
       {
-        title: "Delivery and quality",
-        items: ["Linux", "CI/CD", "GitHub Actions", "Testing", "Debugging", "Performance", "Code review", "Monitoring"],
+        title: "Data & AI engineering",
+        items: [
+          "Python",
+          "Prompt Engineering",
+          "Embeddings",
+          "Semantic Search",
+          "Pinecone",
+          "ChromaDB",
+          "Structured Outputs",
+          "AI API Integration",
+        ],
+      },
+      {
+        title: "Cloud, DevOps & quality",
+        items: [
+          "Linux",
+          "Docker",
+          "Nginx",
+          "AWS",
+          "GitHub Actions",
+          "CI/CD",
+          "Jest",
+          "Vitest",
+          "Playwright",
+          "Testing",
+          "Monitoring",
+          "Performance",
+        ],
       },
     ],
   },

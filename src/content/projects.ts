@@ -13,7 +13,9 @@ type Shot = {
 export type Project = {
   slug: ProjectSlug;
   /** owner/name on GitHub. */
-  repo: string;
+  repo?: string;
+  /** Public URL of the deployed project, when available. */
+  liveUrl?: string;
   /** The colour the whole page takes while this project is showing. */
   stage: string;
   shot: Shot;
@@ -22,7 +24,7 @@ export type Project = {
 const SHOTS = shots as Record<ProjectSlug, Shot>;
 
 /**
- * The six projects, in carousel order, and the only place their structure
+ * The projects, in carousel order, and the only place their structure
  * lives. Every surface that shows a project — the card, the counter, the flip
  * side, the arrows — reads from here, so a seventh project is one entry rather
  * than a seventh copy of a layout that has quietly drifted from the other six.
@@ -36,6 +38,7 @@ export const PROJECTS: readonly Project[] = [
   {
     slug: "ai-sales",
     repo: "bringto-dot/ai-sales-landing",
+    liveUrl: "https://timbstay.com/",
     stage: "#f3efe9",
     shot: {
       widths: [640, 960, 1280, 1600],
@@ -72,6 +75,12 @@ export const PROJECTS: readonly Project[] = [
     stage: "#0d1f33",
     shot: SHOTS["pag-commodities"],
   },
+  {
+    slug: "acme-workforce",
+    repo: "manjaycoder/team-sync12",
+    stage: "#f3f6fb",
+    shot: SHOTS["acme-workforce"],
+  },
 ];
 
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
@@ -92,5 +101,3 @@ export const shotFallback = (project: Project) => {
   if (project.slug === "ai-sales") return timbstayImage(project.shot.widths[0]);
   return asset(`projects/${project.slug}-${project.shot.widths[0]}.webp`);
 };
-
-export const repoUrl = (project: Project) => `https://github.com/${project.repo}`;

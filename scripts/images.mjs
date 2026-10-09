@@ -114,6 +114,10 @@ async function main() {
     const cropped = input.extract(box);
 
     const widths = WIDTHS.filter((w) => w <= box.width);
+    // Preserve the native resolution when a source falls between 768px and 1280px.
+    if (box.width < WIDTHS[1] && widths[widths.length - 1] !== box.width) {
+      widths.push(box.width);
+    }
     if (widths.length === 0) widths.push(box.width);
 
     for (const w of widths) {

@@ -3,7 +3,6 @@ import { useRef, type PointerEvent as ReactPointerEvent } from "react";
 import { Button } from "../../components/ui/Button";
 import { GlassPanel } from "../../components/ui/GlassPanel";
 import {
-  repoUrl,
   shotFallback,
   shotSrcSet,
   type Project,
@@ -37,7 +36,7 @@ export function ProjectCard({
   offset: number;
   flipped: boolean;
   onFlip: () => void;
-  labels: { open: string; back: string };
+  labels: { open: string; openLive: string; back: string };
   still: boolean;
   priority: boolean;
   /**
@@ -268,18 +267,35 @@ export function ProjectCard({
                       ))}
                     </ul>
 
-                    <div className="mt-8 md:mt-10">
-                      <Button
-                        href={repoUrl(project)}
-                        target="_blank"
-                        rel="noreferrer"
-                        arrow
-                        className="pointer-events-auto"
-                        tabIndex={active && flipped ? 0 : -1}
-                      >
-                        {labels.open}
-                      </Button>
-                    </div>
+                    {(project.liveUrl || project.repo) && (
+                      <div className="mt-8 flex flex-wrap gap-3 md:mt-10">
+                        {project.liveUrl && (
+                          <Button
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            arrow
+                            className="pointer-events-auto"
+                            tabIndex={active && flipped ? 0 : -1}
+                          >
+                            {labels.openLive}
+                          </Button>
+                        )}
+                        {project.repo && (
+                          <Button
+                            href={`https://github.com/${project.repo}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            variant={project.liveUrl ? "ghost" : "solid"}
+                            arrow
+                            className="pointer-events-auto"
+                            tabIndex={active && flipped ? 0 : -1}
+                          >
+                            {labels.open}
+                          </Button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </GlassPanel>
               </div>

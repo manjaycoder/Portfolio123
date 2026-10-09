@@ -1,4 +1,13 @@
 {
+  "acme-workforce": {
+    "widths": [
+      768,
+      1229
+    ],
+    "width": 1229,
+    "height": 768,
+    "placeholder": "#f4f6f9"
+  },
   "ai-sales": {
     "widths": [
       768,

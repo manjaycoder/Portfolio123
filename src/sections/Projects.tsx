@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
 import { Container, Section } from "../components/layout/Section";
 import { Button } from "../components/ui/Button";
-import { PROJECTS, repoUrl } from "../content/projects";
+import { PROJECTS } from "../content/projects";
 import { useI18n } from "../i18n";
 import { EASE } from "../lib/anim";
 import { useEasedColour } from "../lib/useEasedColour";
@@ -177,7 +177,11 @@ export function Projects() {
               }
               flipped={flippable && position === index && flipped}
               onFlip={() => setFlipped((open) => !open)}
-              labels={{ open: t.projects.open, back: t.projects.back }}
+              labels={{
+                open: t.projects.open,
+                openLive: t.projects.openLive,
+                back: t.projects.back,
+              }}
               still={still}
               priority={position === 0}
               flippable={flippable}
@@ -246,11 +250,26 @@ export function Projects() {
               <p className="max-w-[46ch] text-[1.02rem] leading-[1.7] text-[var(--stage-fg-2)]">
                 {copy.description}
               </p>
-              <div className="mt-7">
-                <Button href={repoUrl(project)} target="_blank" rel="noreferrer" arrow>
-                  {t.projects.open}
-                </Button>
-              </div>
+              {(project.liveUrl || project.repo) && (
+                <div className="mt-7 flex flex-wrap gap-3">
+                  {project.liveUrl && (
+                    <Button href={project.liveUrl} target="_blank" rel="noreferrer" arrow>
+                      {t.projects.openLive}
+                    </Button>
+                  )}
+                  {project.repo && (
+                    <Button
+                      href={`https://github.com/${project.repo}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      variant={project.liveUrl ? "ghost" : "solid"}
+                      arrow
+                    >
+                      {t.projects.open}
+                    </Button>
+                  )}
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         )}

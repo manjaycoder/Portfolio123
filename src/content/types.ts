@@ -13,7 +13,8 @@ export type ProjectSlug =
   | "stipula-legal"
   | "nimbus-crm"
   | "productivity-bot"
-  | "pag-commodities";
+  | "pag-commodities"
+  | "acme-workforce";
 
 export type ContactKey = "telegram" | "email" | "discord" | "github" | "kwork";
 
@@ -73,6 +74,7 @@ export type Dict = {
     previous: string;
     next: string;
     open: string;
+    openLive: string;
     back: string;
     items: Record<ProjectSlug, ProjectCopy>;
   };
